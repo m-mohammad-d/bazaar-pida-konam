@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./SeachComponnent.css";
 import Modal from "./modal";
+import Cursor from "./asset/icons8-hand-cursor-60.svg"
 
 function SearchComponent() {
   const [query, setQuery] = useState(""); // Store the search query
@@ -14,15 +15,19 @@ function SearchComponent() {
 
   // Handle search button click
   const handleSearch = () => {
-    if (!searchParam) return; // Do nothing if no search parameter is found
-    const encodedQuery = encodeURIComponent(searchParam); // Encode the search parameter
-    window.location.href = `https://www.google.com/search?q=${encodedQuery}`;
+    if (searchParam) {
+      const encodedQuery = encodeURIComponent(searchParam); // Encode the search parameter
+      window.location.href = `https://www.google.com/search?q=${encodedQuery}`;
+    } else {
+      setIsModalOpen(true); // Open modal if no search parameter is found
+    }
   };
 
   // Handle key press event for input field
   const handleCreateUrl = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      setIsModalOpen(true); // Open modal when Enter key is pressed
+      // Call handleSearch function when Enter key is pressed
+      handleSearch();
     }
   };
 
@@ -34,7 +39,6 @@ function SearchComponent() {
   useEffect(() => {
     if (searchParam) {
       setQuery(searchParam); // Set query value based on URL parameter
-
       setShowMousePointer(true); // Show the mouse pointer indicator
 
       // Simulate a click on the search button after 1 second
@@ -74,13 +78,13 @@ function SearchComponent() {
           </button>
         </div>
         {showMousePointer && (
-          <div
-            className="mouse-pointer absolute bg-red-500 w-6 h-6 rounded-full"
+          <img src={Cursor}
+            className="mouse-pointer absolute w-10 h-10 rounded-full"
             style={{
               top: `${searchButtonRef.current?.offsetTop}px`,
               left: `${searchButtonRef.current?.offsetLeft}px`,
             }}
-          ></div>
+          ></img>
         )}
         {isModalOpen && <Modal url={modalUrl} onClose={handleCloseModal} />}
       </div>

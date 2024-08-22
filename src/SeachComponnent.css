@@ -5,7 +5,7 @@
   }
   50% {
     transform: translateX(20px) translateY(20px);
-    opacity: 0.7;
+    opacity: 0.8;
   }
   100% {
     transform: translateX(0) translateY(0);
@@ -17,9 +17,6 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 2px solid black;
-  border-radius: 50%;
-  background-color: white;
   pointer-events: none;
   animation: mouseMove 2s ease-in-out infinite;
 }
