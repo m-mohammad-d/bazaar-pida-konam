@@ -51,31 +51,31 @@ function SearchComponent() {
   const modalUrl = `${currentSiteUrl}?q=${encodeURIComponent(query)}`;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
-      <div className="relative w-full max-w-md bg-white shadow-2xl rounded-xl p-8">
-        <h1 className="text-3xl font-extrabold text-center mb-6 text-gray-800">
-          بزار  برات پیدا کنم
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 p-4 sm:p-6 lg:p-8">
+      <div className="relative w-full max-w-md bg-white shadow-2xl rounded-xl p-4 sm:p-6 lg:p-8">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-center mb-4 sm:mb-6 text-gray-800">
+          بزار برات پیدا کنم
         </h1>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row gap-4">
           <input
             type="text"
             value={searchParam || query} // Display search parameter from URL or local value
             onChange={(e) => setQuery(e.target.value)} // Update search query
             onKeyDown={handleCreateUrl} // Handle Enter key press
             placeholder="چی میخوای براش سرچ کنی"
-            className="flex-grow px-5 py-3 border border-gray-300 rounded-l-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="flex-grow px-4 py-2 border border-gray-300 rounded-l-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <button
             ref={searchButtonRef} // Reference to button
             onClick={handleSearch} // Handle button click
-            className="px-5 py-3 bg-blue-600 text-white rounded-r-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
+            className="px-4 py-2 bg-blue-600 text-white rounded-r-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
           >
             جست و جو
           </button>
         </div>
         {showMousePointer && (
           <div
-            className="mouse-pointer"
+            className="mouse-pointer absolute bg-red-500 w-6 h-6 rounded-full"
             style={{
               top: `${searchButtonRef.current?.offsetTop}px`,
               left: `${searchButtonRef.current?.offsetLeft}px`,
